@@ -26,6 +26,24 @@ http://localhost:8080/logout/
 
 ### Ant Matches
 
+<br/>
+
+### Application Users
+
+
+<br/>
+
+### In Memory User Details Manager
+
+<br/>
+
+### Password Encoding With Bcrypt
+
+```
+Login: annasmith
+Password: password
+```
+
 <br/><br/>
 
 ---
