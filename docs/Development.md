@@ -223,6 +223,16 @@ $ curl -u linda:password123 \
     | jq
 ```
 
+<br/>
+
+### Order Does Matter
+
+<br/>
+
+### preAuthorize()
+
+// SAME CHECKS
+
 <br/><br/>
 
 ---
