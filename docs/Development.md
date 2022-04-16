@@ -150,7 +150,78 @@ $ curl -u tom:password123 \
     | jq
 ```
 
+<br/>
 
+### hasAuthority()
+
+
+<br/>
+
+### Adding Authorities to Users
+
+
+<br/>
+
+### Permission Based Authentication in Action
+
+
+<br/>
+
+```
+// GET
+$ curl -u tom:password123 \
+    --header "Content-Type: application/json" \
+    --request GET \
+    --url http://localhost:8080/management/api/v1/students \
+    | jq
+```
+
+<br/>
+
+```
+// Tom
+// FORBIDDEN
+// PUT
+$ curl -u tom:password123 \
+    --header "Content-Type: application/json" \
+    --data '{
+      "studentName":"Alex Gomes"}' \
+    --request PUT \
+    --url http://localhost:8080/management/api/v1/students/1 \
+    | jq
+```
+
+
+<br/>
+
+```
+// Tom
+// FORBIDDEN
+// POST
+$ curl -u tom:password123 \
+    --header "Content-Type: application/json" \
+    --data '{
+      "studentName":"Alex Gomes"}' \
+    --request POST \
+    --url http://localhost:8080/management/api/v1/students \
+    | jq
+```
+
+
+<br/>
+
+```
+// Linda
+// OK
+// POST
+$ curl -u linda:password123 \
+    --header "Content-Type: application/json" \
+    --data '{
+      "studentName":"Alex Gomes"}' \
+    --request POST \
+    --url http://localhost:8080/management/api/v1/students \
+    | jq
+```
 
 <br/><br/>
 
