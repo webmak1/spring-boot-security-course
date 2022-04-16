@@ -168,6 +168,7 @@ $ curl -u tom:password123 \
 <br/>
 
 ```
+// Tom
 // GET
 $ curl -u tom:password123 \
     --header "Content-Type: application/json" \
@@ -232,6 +233,56 @@ $ curl -u linda:password123 \
 ### preAuthorize()
 
 // SAME CHECKS
+
+<br/>
+
+### Understanding CSRF
+
+<br/>
+
+### CSRF Token
+
+
+<br/>
+
+```
+// Linda
+// GET
+$ curl -v -u linda:password123 \
+    --header "Content-Type: application/json" \
+    --request GET \
+    --url http://192.168.1.9:8080/management/api/v1/students \
+    | jq
+```
+
+
+<br/>
+
+```
+// Linda
+// OK
+// POST
+$ curl -u linda:password123 \
+    --header "Content-Type: application/json" \
+    --data '{
+      "studentName":"Alex Gomes"}' \
+    --request POST \
+    --url http://localhost:8080/management/api/v1/students \
+    | jq
+```
+
+<!--
+    --cookie-jar /tmp/cookies.txt \
+-->
+
+Works without token. Cant receive token from server
+
+```
+--header "X-XSRF-TOKEN: <TOKEN>"
+```
+
+
+
 
 <br/><br/>
 
