@@ -328,6 +328,30 @@ http://localhost:8080/login
 ### Password, UserName, Remember-Me, Parameters
 
 
+<br/>
+
+### DB Authentication Overview
+
+<br/>
+
+### Application User Class
+
+<br/>
+
+### Application User DAO Interface
+
+<br/>
+
+### Fake Application User Service
+
+<br/>
+
+### DAO Authentication Provider
+
+<br/>
+
+### DB Authentication In Action
+
 <br/><br/>
 
 ---
