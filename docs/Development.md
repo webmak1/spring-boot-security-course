@@ -307,6 +307,26 @@ http://localhost:8080/login
 
 ### Redirect After Success Login
 
+<br/>
+
+### Remember Me
+
+<br/>
+
+### Remember me Cookie and Extra Options
+
+<br/>
+
+### Logout
+
+<br/>
+
+### Logout Button
+
+<br/>
+
+### Password, UserName, Remember-Me, Parameters
+
 
 <br/><br/>
 
