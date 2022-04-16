@@ -44,6 +44,32 @@ Login: annasmith
 Password: password
 ```
 
+<br/>
+
+### Roles and Permissions
+
+<br/>
+
+### Admin User
+
+
+<br/>
+
+### Roles & Permissions Using Enums
+
+<br/>
+
+### Role Based Authentication
+
+
+Linda has not access, but Anna has
+
+
+http://localhost:8080/api/v1/students/2/
+
+
+
+
 <br/><br/>
 
 ---
