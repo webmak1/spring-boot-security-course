@@ -281,7 +281,31 @@ Works without token. Cant receive token from server
 --header "X-XSRF-TOKEN: <TOKEN>"
 ```
 
+<br/>
 
+### How CSRF Token Generation Works
+
+
+<br/>
+
+### Form Based Authentication
+
+
+<br/>
+
+### Enable Form Based Authentication
+
+
+<br/>
+
+### Session ID
+
+http://localhost:8080/login
+
+
+<br/>
+
+### Redirect After Success Login
 
 
 <br/><br/>
