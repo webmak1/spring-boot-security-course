@@ -68,6 +68,88 @@ Linda has not access, but Anna has
 http://localhost:8080/api/v1/students/2/
 
 
+<br/>
+
+### Permission Based Authentication
+
+<br/>
+
+### Management API
+
+<br/>
+
+### Disabling CSRF
+
+
+<br/>
+
+```
+// GET
+$ curl -u linda:password123 \
+    --header "Content-Type: application/json" \
+    --request GET \
+    --url http://localhost:8080/management/api/v1/students \
+    | jq
+```
+
+<br/>
+
+```
+[
+  {
+    "studentId": 1,
+    "studentName": "James Bond"
+  },
+  {
+    "studentId": 2,
+    "studentName": "Maria Jones"
+  },
+  {
+    "studentId": 3,
+    "studentName": "Anna Smith"
+  }
+]
+```
+
+<br/>
+
+```
+// GET
+$ curl -u tom:password123 \
+    --header "Content-Type: application/json" \
+    --request GET \
+    --url http://localhost:8080/management/api/v1/students \
+    | jq
+```
+
+
+<br/>
+
+```
+// PUT
+$ curl -u tom:password123 \
+    --header "Content-Type: application/json" \
+    --data '{
+      "studentName":"Alex Gomes"}' \
+    --request PUT \
+    --url http://localhost:8080/management/api/v1/students/1 \
+    | jq
+```
+
+
+<br/>
+
+```
+// POST
+$ curl -u tom:password123 \
+    --header "Content-Type: application/json" \
+    --data '{
+      "studentName":"Alex Gomes"}' \
+    --request POST \
+    --url http://localhost:8080/management/api/v1/students \
+    | jq
+```
+
 
 
 <br/><br/>
