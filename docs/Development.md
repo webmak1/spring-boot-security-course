@@ -431,6 +431,15 @@ $ curl -v \
     | jq
 ```
 
+<br/>
+
+### JWT Config
+
+<br/>
+
+### JWT Config in Action
+
+
 <br/><br/>
 
 ---
