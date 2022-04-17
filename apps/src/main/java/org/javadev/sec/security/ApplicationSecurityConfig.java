@@ -1,6 +1,8 @@
 package org.javadev.sec.security;
 
 import org.javadev.sec.auth.ApplicationUserService;
+import org.javadev.sec.jwt.JwtTokenVerifier;
+import org.javadev.sec.jwt.JwtUsernameAndPasswordAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,6 +12,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
@@ -36,30 +39,16 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
+                .sessionManagement()
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager()))
+                .addFilterAfter(new JwtTokenVerifier(), JwtUsernameAndPasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers("/", "index", "/css/*", "/js/*").permitAll()
                 .antMatchers("/api/**").hasRole(STUDENT.name())
                 .anyRequest()
-                .authenticated()
-                .and()
-                .formLogin()
-                    .loginPage("/login").permitAll()
-                    .defaultSuccessUrl("/courses", true)
-                    .usernameParameter("username")
-                    .passwordParameter("password")
-                .and()
-                .rememberMe()
-                    .tokenValiditySeconds((int)TimeUnit.DAYS.toSeconds(21))
-                    .key("somethingverysecured")
-                    .rememberMeParameter("remember-me")
-                .and()
-                .logout()
-                .logoutUrl("/logout")
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET"))
-                .clearAuthentication(true)
-                .invalidateHttpSession(true)
-                .deleteCookies("JSESSIONID", "remember-me")
-                .logoutSuccessUrl("/login");
+                .authenticated();
     }
 
     @Override
@@ -74,35 +63,4 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
         provider.setUserDetailsService(applicationUserService);
         return provider;
     }
-
-//    @Override
-//    @Bean
-//    protected UserDetailsService userDetailsService() {
-//        UserDetails annaSmithUser = User.builder()
-//                .username("annasmith")
-//                .password(passwordEncoder.encode("password"))
-//                // .roles(STUDENT.name()) // ROLE_STUDENT
-//                .authorities(STUDENT.getGrantedAuthorities())
-//                .build();
-//
-//        UserDetails lindaUser = User.builder()
-//                .username("linda")
-//                .password(passwordEncoder.encode("password123"))
-//                // .roles(ADMIN.name()) // ROLE_ADMIN
-//                .authorities(ADMIN.getGrantedAuthorities())
-//                .build();
-//
-//        UserDetails tomUser = User.builder()
-//                .username("tom")
-//                .password(passwordEncoder.encode("password123"))
-//                // .roles(ADMINTRAINEE.name()) // ROLE_ADMINTRAINEE
-//                .authorities(ADMINTRAINEE.getGrantedAuthorities())
-//                .build();
-//
-//        return new InMemoryUserDetailsManager(
-//                annaSmithUser,
-//                lindaUser,
-//                tomUser
-//        );
-//    }
 } // The End of Class;
